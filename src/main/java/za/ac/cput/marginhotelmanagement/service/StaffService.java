@@ -50,13 +50,12 @@ public class StaffService implements IStaffService {
     }
 
     @Override
-    public boolean deleteManager(Long id) {
+    public void deleteManager(Long id) {
         if (!managerRepository.existsById(id)) {
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "Manager not found with id: " + id);
         }
         managerRepository.deleteById(id);
-        return true;
     }
 
     @Override
@@ -86,13 +85,12 @@ public class StaffService implements IStaffService {
     }
 
     @Override
-    public boolean deleteReceptionist(Long id) {
+    public void deleteReceptionist(Long id) {
         if (!receptionistRepository.existsById(id)) {
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "Receptionist not found with id: " + id);
         }
         receptionistRepository.deleteById(id);
-        return true;
     }
 
     @Override
