@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import za.ac.cput.marginhotelmanagement.domain.Payment;
 import za.ac.cput.marginhotelmanagement.dtos.CreatePaymentRequest;
 import za.ac.cput.marginhotelmanagement.dtos.PaymentDto;
 import za.ac.cput.marginhotelmanagement.dtos.UpdatePaymentRequest;
@@ -76,8 +75,8 @@ public class PaymentController {
     }
 
     @GetMapping("/findByAmount/{amount}")
-    public ResponseEntity<List<Payment>> findByAmount(@PathVariable double amount) {
-        return ResponseEntity.ok(paymentService.findPaymentByAmount(amount));
+    public ResponseEntity<List<PaymentDto>> findByAmount(@PathVariable double amount) {
+        return ResponseEntity.ok(paymentService.getPaymentsByAmount(amount));
     }
 
     @GetMapping("/findPaymentByPaymentStatus/{paymentStatus}")
@@ -88,11 +87,11 @@ public class PaymentController {
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>("Invalid payment status'" + paymentStatus + "' expected (SUCCESS or FAILED", HttpStatus.BAD_REQUEST);
         }
-        return ResponseEntity.ok(paymentService.findPaymentByPaymentStatus(PaymentStatus.valueOf(paymentStatus)));
+        return ResponseEntity.ok(paymentService.getPaymentsByPaymentStatus(status));
     }
 
     @GetMapping("/findPaymentByPaymentDateBetween/{startDate}/{endDate}")
-    public ResponseEntity<List<Payment>> findPaymentByPaymentDateBetween(@PathVariable LocalDateTime startDate, @PathVariable LocalDateTime endDate) {
-        return ResponseEntity.ok(paymentService.findPaymentByPaymentDateBetween(startDate, endDate));
+    public ResponseEntity<List<PaymentDto>> findPaymentByPaymentDateBetween(@PathVariable LocalDateTime startDate, @PathVariable LocalDateTime endDate) {
+        return ResponseEntity.ok(paymentService.getPaymentsByPaymentDateBetween(startDate, endDate));
     }
 }

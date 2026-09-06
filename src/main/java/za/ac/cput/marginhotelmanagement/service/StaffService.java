@@ -16,7 +16,7 @@ import za.ac.cput.marginhotelmanagement.repository.ReceptionistRepository;
 import java.util.List;
 
 @Service
-public class StaffService implements IStaffService {
+public class StaffService implements IManagerService, IReceptionistService {
 
     private final ManagerRepository managerRepository;
     private final ReceptionistRepository receptionistRepository;
@@ -28,9 +28,10 @@ public class StaffService implements IStaffService {
         this.receptionistRepository = receptionistRepository;
     }
 
+    // IManagerService implementations
     @Override
     public Manager createManager(Manager manager) {
-        return managerRepository.save(manager);
+        return this.managerRepository.save(manager);
     }
 
     @Override
@@ -60,12 +61,13 @@ public class StaffService implements IStaffService {
 
     @Override
     public List<Manager> getAllManagers() {
-        return managerRepository.findAll();
+        return this.managerRepository.findAll();
     }
 
+    // IReceptionistService implementations
     @Override
     public Receptionist createReceptionist(Receptionist receptionist) {
-        return receptionistRepository.save(receptionist);
+        return this.receptionistRepository.save(receptionist);
     }
 
     @Override

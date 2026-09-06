@@ -4,11 +4,9 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Repository;
-import za.ac.cput.marginhotelmanagement.MarginHotelManagementApplication;
 import za.ac.cput.marginhotelmanagement.domain.Invoice;
 import za.ac.cput.marginhotelmanagement.domain.Payment;
 import za.ac.cput.marginhotelmanagement.enums.InvoiceStatus;
@@ -38,7 +36,7 @@ class PaymentRepositoryTest {
     private static Payment payment = PaymentFactory.createPayment(
             1500.00,
             PaymentStatus.SUCCESS,
-            LocalDateTime.now().plusDays(2),
+            LocalDateTime.now().minusDays(1),
             mockInvoice);
 
     @Autowired
@@ -50,9 +48,9 @@ class PaymentRepositoryTest {
         // Save the mock Invoice to the database
         Invoice savedInvoice = invoiceRepository.save(mockInvoice);
 
-        Payment createPayment = paymentRepository.save(payment);
-        assertNotNull(createPayment);
-        System.out.println("Payment created successfully: " + createPayment);
+        payment = paymentRepository.save(payment);
+        assertNotNull(payment);
+        System.out.println("Payment created successfully: " + payment);
     }
 
     @Test

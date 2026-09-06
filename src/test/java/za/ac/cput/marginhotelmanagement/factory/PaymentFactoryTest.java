@@ -51,10 +51,7 @@ class PaymentFactoryTest {
                 LocalDateTime.now().minusDays(1),
                 invoice
         );
-        System.out.println("INTENTIONALLY FAILING: expected Payment object with invalid amount.");
-        assertNotNull(payment);
-        //assertEquals(127L, payment.getPaymentId());
-        //assertEquals(0, payment.getAmount());
+        assertNull(payment);
     }
     @Test
     @Order(3)
@@ -66,8 +63,7 @@ class PaymentFactoryTest {
                 LocalDateTime.now().plusDays(1),
                 invoice
         );
-        System.out.println("INTENTIONALLY FAILING: expected Payment object with future date.");
-        assertNotNull(payment);
+        assertNull(payment);
     }
     @Test
     @Order(4)
@@ -79,7 +75,6 @@ class PaymentFactoryTest {
                 LocalDateTime.now().minusDays(1),
                 null
         );
-        System.out.println("INTENTIONALLY FAILING: expected Payment object with null invoice.");
-        assertNotNull(payment);
+        assertNull(payment);
     }
 }

@@ -11,9 +11,6 @@ public interface IService<T, ID> {
 
     /**
      * Convenience default method to delete an entity by its id.
-     * Implementations that can perform a more efficient delete-by-id
-     * may override this method. The default behaviour reads the entity
-     * then delegates to delete(T).
      */
     default boolean deleteById(ID id) {
         T entity = read(id);

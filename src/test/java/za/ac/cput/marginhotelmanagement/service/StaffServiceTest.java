@@ -83,8 +83,7 @@ class StaffServiceTest {
     @Disabled
     void deleteManager() {
         Manager saved = staffService.createManager(manager);
-        boolean deleted = staffService.deleteManager(saved.getStaffId());
-        assertTrue(deleted);
+        staffService.deleteManager(saved.getStaffId());
         System.out.println("Manager deleted successfully");
     }
 
@@ -141,8 +140,7 @@ class StaffServiceTest {
     @Disabled
     void deleteReceptionist() {
         Receptionist saved = staffService.createReceptionist(receptionist);
-        boolean deleted = staffService.deleteReceptionist(saved.getStaffId());
-        assertTrue(deleted);
+        staffService.deleteReceptionist(saved.getStaffId());
         System.out.println("Receptionist deleted successfully");
     }
 

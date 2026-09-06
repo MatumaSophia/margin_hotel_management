@@ -1,8 +1,7 @@
 package za.ac.cput.marginhotelmanagement.dtos;
 
 import lombok.Data;
-
-import java.time.LocalDateTime;
+import za.ac.cput.marginhotelmanagement.enums.PaymentStatus;
 
 /*
    Author: DM Madondo (230949703)
@@ -10,5 +9,5 @@ import java.time.LocalDateTime;
    */
 @Data
 public class UpdatePaymentRequest {
-    private String paymentStatus;
+    private PaymentStatus paymentStatus;
 }
